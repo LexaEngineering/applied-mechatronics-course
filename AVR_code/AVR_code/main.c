@@ -1,3 +1,5 @@
+//Code for Atmega88
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
@@ -83,15 +85,15 @@ int32_t ADC_to_RPM(int32_t adc_value) {
 	int32_t steps_per_rpm = 40;
 	
 	if (adc_value >= 0 && adc_value <= 399) {
-		// Map 0–399 to RPM between -10 and -1
+		// Map 0ï¿½399 to RPM between -10 and -1
 		return -1 * ( (400 - adc_value) / steps_per_rpm );
 	}
 	else if (adc_value >= 400 && adc_value <= 623) {
-		// Map 400–623 to RPM 0
+		// Map 400ï¿½623 to RPM 0
 		return 0;
 	}
 	else if(adc_value >= 624 && adc_value <= 1023){
-		// Map 624–1023 to RPM between +10 and +1
+		// Map 624ï¿½1023 to RPM between +10 and +1
 		return (adc_value - 623) / steps_per_rpm;
 	}
 	
